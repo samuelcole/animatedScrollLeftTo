@@ -9,7 +9,7 @@
     };
 
     var animatedScrollTo = function (element, to, duration, callback) {
-        var start = element.scrollTop,
+        var start = element.scrollLeft,
         change = to - start,
         animationStart = +new Date();
         var animating = true;
@@ -23,18 +23,18 @@
             var now = +new Date();
             var val = Math.floor(easeInOutQuad(now - animationStart, start, change, duration));
             if (lastpos) {
-                if (lastpos === element.scrollTop) {
+                if (lastpos === element.scrollLeft) {
                     lastpos = val;
-                    element.scrollTop = val;
+                    element.scrollLeft = val;
                 } else {
                     animating = false;
                 }
             } else {
                 lastpos = val;
-                element.scrollTop = val;
+                element.scrollLeft = val;
             }
             if (now > animationStart + duration) {
-                element.scrollTop = to;
+                element.scrollLeft = to;
                 animating = false;
                 if (callback) { callback(); }
             }
